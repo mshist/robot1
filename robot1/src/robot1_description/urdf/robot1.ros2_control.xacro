@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <ros2_control name="Arm" type="system">
+    <hardware>
+      <plugin>mock_components/GenericSystem</plugin>
+    </hardware>
+    
+    <!-- 机械臂关节接口（保留你原有配置） -->
+    <joint name="joint1">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    <joint name="joint2">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    <joint name="joint3">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    <joint name="joint4">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    <joint name="joint5">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+    
+    <joint name="joint6">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+
+    <!-- ============ 新增：夹爪关节控制接口 ============ -->
+    <joint name="finger_left_joint">
+      <command_interface name="position">
+        <param name="min">0.0</param>    <!-- 对应URDF中夹爪下限 -->
+        <param name="max">0.03</param>   <!-- 对应URDF中夹爪上限 -->
+      </command_interface>
+      <state_interface name="position"/>  <!-- 仅需要位置状态接口 -->
+    </joint>
+    
+    <joint name="finger_right_joint">
+      <command_interface name="position">
+        <param name="min">0.0</param>
+        <param name="max">0.03</param>
+      </command_interface>
+      <state_interface name="position"/>
+    </joint>
+  </ros2_control>
+</robot>

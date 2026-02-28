@@ -1,0 +1,73 @@
+# ==================== 核心：排除超大缓存文件（解决推送失败） ====================
+# Visual Studio/VS Code C++ 浏览数据库文件（导致你推送失败的965MiB文件）
+browse.vc.db
+browse.vc.VC.opendb
+*.vc.db
+*.vc.VC.opendb
+
+# ==================== VS Code/Visual Studio 通用忽略 ====================
+# VS Code 配置目录
+.vscode/
+# Visual Studio 解决方案文件
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.cache
+*.db
+*.aps
+*.obj
+*.pdb
+*.idb
+*.ilk
+*.msi
+*.tmp
+*.vspscc
+*.vssscc
+_builds/
+Debug/
+Release/
+x64/
+x86/
+ipch/
+*.opensdf
+*.sdf
+*.tlog
+*.log
+*.bin
+*.dll
+*.exe
+*.lib
+*.exp
+*.bak
+
+# ==================== ROS/机械臂项目通用忽略 ====================
+# ROS 编译生成文件
+build/
+devel/
+install/
+log/
+.catkin_workspace
+.catkin_tools_prebuild/
+# 二进制可执行文件
+*.so
+*.pyc
+# 临时文件
+*.swp
+*.swo
+*~
+# 日志文件
+*.log
+logs/
+# 数据集/大文件（如果有）
+*.zip
+*.rar
+*.7z
+*.h5
+*.pth
+*.pt
+
+# ==================== 其他通用忽略 ====================
+# 操作系统缓存
+.DS_Store
+Thumbs.db

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+ <!-- 材料定义 -->
+  <material name="gray">
+    <color rgba="0.75294 0.75294 0.75294 1"/>
+  </material>
+  
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <material name="blue">
+      <color rgba="0.0 0.0 0.5 1"/>
+  </material>
+
+  <material name="dark_green">
+      <color rgba="0.0 0.4 0.0 1.0"/>
+  </material>
+
+  <material name="light_green">
+      <color rgba="0.0 0.6 0.0 1.0"/>
+  </material>
+
+
+</robot>

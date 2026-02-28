@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <!-- 包基本信息（与CMakeLists.txt的project名一致） -->
+  <name>joint_serial_node</name>
+  <version>0.0.0</version>
+  <description>ROS 2 node to send joint states via serial port and control joints with keyboard</description>
+  <maintainer email="mshist@todo.todo">mshist</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- 构建工具依赖（必须） -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- 核心运行依赖（两个节点都需要） -->
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+
+  <!-- 键盘控制节点专属依赖 -->
+  <depend>rclcpp_action</depend>
+  <depend>control_msgs</depend>
+
+  <!-- 串口通信依赖（新增） -->
+  <depend>serial</depend>
+
+  <!-- 测试依赖（不变） -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <!-- 导出构建类型（ROS2标准） -->
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

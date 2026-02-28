@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- 机器人模型参数 -->
+  <arg name="model" default="$(find-pkg-share robot1_description)/urdf/robot1.urdf.xacro"/>
+  
+  <!-- 机器人状态发布器 -->
+  <node name="robot_state_publisher"
+        pkg="robot_state_publisher"
+        exec="robot_state_publisher"
+        output="screen">
+    <param name="robot_description" command="xacro $(var model)"/>
+  </node>
+  
+  <!-- 关节状态发布器（GUI版）- 添加这个才能控制关节 -->
+  <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" name="joint_state_publisher_gui"/>
+  
+  <!-- 控制器管理器配置 -->
+  <node pkg="controller_manager" exec="ros2_control_node">
+    <param from="$(find-pkg-share robot1_description)/config/ros2_controllers.yaml"/>
+  </node>
+  
+  <!-- 启动控制器 -->
+  <node pkg="controller_manager" exec="spawner" args="joint_state_broadcaster"/>
+  <node pkg="controller_manager" exec="spawner" args="joint_trajectory_controller"/>
+  
+  <!-- RViz2 可视化 -->
+  <node name="rviz2" pkg="rviz2" exec="rviz2" output="screen"/>
+  
+</launch>

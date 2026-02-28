@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ============ 爪子基座 ============ -->
+  <link name="gripper_base">
+    
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.06 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 爪子基座关节 -->
+  <joint name="gripper_base_joint0" type="fixed">
+    <parent link="tool_link"/>
+    <child link="gripper_base"/>
+    <origin xyz="0 0 0.03" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ============ 左爪指 ============ -->
+  <link name="finger_left">
+    
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 0.02 0.06"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 左爪指关节 -->
+  <joint name="finger_left_joint" type="prismatic">
+    <parent link="gripper_base"/>
+    <child link="finger_left"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="0.03" effort="10" velocity="1.0"/>
+    <origin xyz="0 0.025 0.02" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ============ 右爪指 ============ -->
+  <link name="finger_right">
+   
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 0.02 0.06"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 右爪指关节 -->
+  <joint name="finger_right_joint" type="prismatic">
+    <parent link="gripper_base"/>
+    <child link="finger_right"/>
+    <axis xyz="1 0 0"/>
+    <mimic joint="finger_left_joint" multiplier="-1.0"/>
+    <limit lower="0" upper="0.03" effort="10" velocity="1.0"/>
+    <origin xyz="0 0.025 0.02" rpy="0 0 0"/>
+  </joint>
+
+</robot>

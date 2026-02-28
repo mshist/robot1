@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: robot1_description
+    relative_path: urdf/my_robot.urdf.xacro
+  srdf:
+    relative_path: config/robot1.srdf
+  package_settings:
+    author_name: todo
+    author_email: todo@qq.com
+    generated_timestamp: 1771986236

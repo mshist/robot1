@@ -1,0 +1,53 @@
+# 适配robot1的MoveIt Servo绝对位姿控制配置
+moveit_servo:
+  ros__parameters:
+    # 基础配置
+    use_gazebo: false  # 真实机器人设为false，Gazebo仿真改true
+    publish_joint_positions: true
+    publish_joint_velocities: false
+    publish_joint_accelerations: false
+    use_traj_velocities: false
+
+    # 绝对位姿控制核心配置
+    input_type: "pose"
+    pose_command_in_topic: "/servo_server/target_pose"
+    status_topic: "/servo_server/status"
+
+    # 机器人坐标系（完全匹配你的URDF）
+    robot_link_command_frame: "tool_link"  # 末端工具连杆
+    robot_base_frame: "base_link"          # 基坐标系
+    joint_topic: "/joint_states"
+
+    # 规划组名（和你的MoveIt规划组保持一致）
+    move_group_name: "arm"
+
+    # 运动参数（匹配URDF中的关节速度）
+    lower_singularity_threshold: 1.0
+    hard_stop_singularity_threshold: 0.5
+    low_pass_filter_coeff: 0.2
+    publish_period: 0.01  # 100Hz高频控制
+
+    # 关节限位（完全匹配你的URDF，速度3.0rad/s）
+    joint_limits:
+      joint1: {velocity: 3.0, acceleration: 6.0}
+      joint2: {velocity: 3.0, acceleration: 6.0}
+      joint3: {velocity: 3.0, acceleration: 6.0}
+      joint4: {velocity: 3.0, acceleration: 6.0}
+      joint5: {velocity: 3.0, acceleration: 6.0}
+      joint6: {velocity: 3.0, acceleration: 6.0}
+
+    # 笛卡尔空间限位（防止运动超限）
+    cartesian_limits:
+      max_translational_velocity: 0.1  # 最大线速度0.1m/s
+      max_rotational_velocity: 1.0     # 最大角速度1.0rad/s
+      max_translational_acceleration: 0.2
+      max_rotational_acceleration: 2.0
+      max_translational_jerk: 0.4
+      max_rotational_jerk: 4.0
+
+    # 碰撞检测（安全控制）
+    collision_checking: true
+    collision_check_rate: 100
+    self_collision_checking: true
+    collision_distance_safety_factor: 1.2
+    min_allowable_collision_distance: 0.01

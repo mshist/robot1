@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <arg name="model" default="$(find-pkg-share robot1_description)/urdf/robot1.urdf.xacro"/>
+
+  <node name="robot_state_publisher"
+        pkg="robot_state_publisher"
+        exec="robot_state_publisher"
+        output="screen">
+    <param name="robot_description" command="xacro $(var model)"/>
+  </node>
+
+  <node name="joint_state_publisher_gui"
+        pkg="joint_state_publisher_gui"
+        exec="joint_state_publisher_gui"
+        output="screen"/>
+
+  <node name="rviz2"
+        pkg="rviz2"
+        exec="rviz2"
+        output="screen"/>
+
+</launch>

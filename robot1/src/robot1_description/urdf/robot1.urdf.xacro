@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ============ 参数定义 ============ -->
+  <xacro:property name="joint_limit_lower" value="-3.14159"/>
+  <xacro:property name="joint_limit_upper" value="3.14159"/>
+  <xacro:property name="joint_effort" value="100.0"/>
+  <xacro:property name="joint_velocity" value="3.0"/>
+
+  <!-- ============ 基础连杆 ============ -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.00011186 0 0.050115" rpy="0 0 0"/>
+      <mass value="5.6269"/>
+      <inertia ixx="0.024605" ixy="4.4026E-17" ixz="-3.4546E-05"
+               iyy="0.048611" iyz="-6.3016E-20" izz="0.063786"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/base_link.STL"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ============ 连杆 1 ============ -->
+  <link name="link1">
+    <inertial>
+      <origin xyz="4.8572E-17 0.00044185 0.022579" rpy="0 0 0"/>
+      <mass value="0.45825"/>
+      <inertia ixx="0.00047011" ixy="-1.7387E-07" ixz="4.4731E-20"
+               iyy="0.00036269" iyz="6.8481E-20" izz="0.00054928"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link1.STL"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link1.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 关节 1 -->
+  <joint name="joint1" type="revolute">
+    <origin xyz="0.053427 0 0.11" rpy="0 0 1.5708"/>
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="${joint_limit_lower}" upper="${joint_limit_upper}" 
+           effort="${joint_effort}" velocity="${joint_velocity}"/>
+    <dynamics damping="0.7" friction="0.1"/>
+  </joint>
+
+  <!-- ============ 连杆 2 ============ -->
+  <link name="link2">
+    <inertial>
+      <origin xyz="-0.0022149 0.13822 0.040136" rpy="0 0 0"/>
+      <mass value="1.4122"/>
+      <inertia ixx="0.0058101" ixy="1.8475E-05" ixz="1.7881E-07"
+               iyy="0.00076099" iyz="2.4599E-07" izz="0.0063121"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link2.STL"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link2.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 关节 2 -->
+  <joint name="joint2" type="revolute">
+    <origin xyz="-0.043 0.001 0.066" rpy="1.5708 0 1.5708"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="${joint_limit_lower}" upper="${joint_limit_upper}" 
+           effort="${joint_effort}" velocity="${joint_velocity}"/>
+    <dynamics damping="0.7" friction="0.1"/>
+  </joint>
+
+  <!-- ============ 连杆 3 ============ -->
+  <link name="link3">
+    <inertial>
+      <origin xyz="-0.063601 0.068031 -0.036134" rpy="0 0 0"/>
+      <mass value="0.53824"/>
+      <inertia ixx="0.00028046" ixy="8.2712E-05" ixz="-3.0482E-10"
+               iyy="0.00036015" iyz="-7.8604E-08" izz="0.00048078"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link3.STL"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link3.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 关节 3 -->
+  <joint name="joint3" type="revolute">
+    <origin xyz="0 0.37 0.0725" rpy="0 0 0"/>
+    <parent link="link2"/>
+    <child link="link3"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="${joint_limit_lower}" upper="${joint_limit_upper}" 
+           effort="${joint_effort}" velocity="${joint_velocity}"/>
+    <dynamics damping="0.7" friction="0.1"/>
+  </joint>
+
+  <!-- ============ 连杆 4 ============ -->
+  <link name="link4">
+    <inertial>
+      <origin xyz="0.0006944 -0.0066959 0.13591" rpy="0 0 0"/>
+      <mass value="0.7295"/>
+      <inertia ixx="0.0019092" ixy="1.723E-08" ixz="6.8893E-08"
+               iyy="0.0019373" iyz="1.5483E-10" izz="0.00027218"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link4.STL"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link4.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 关节 4 -->
+  <joint name="joint4" type="revolute">
+    <origin xyz="-0.066502 0.108 -0.03" rpy="1.5708 0 -3.1416"/>
+    <parent link="link3"/>
+    <child link="link4"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="${joint_limit_lower}" upper="${joint_limit_upper}" 
+           effort="${joint_effort}" velocity="${joint_velocity}"/>
+    <dynamics damping="0.7" friction="0.1"/>
+  </joint>
+
+  <!-- ============ 连杆 5 ============ -->
+  <link name="link5">
+    <inertial>
+      <origin xyz="7.7196E-07 -0.011567 0.040237" rpy="0 0 0"/>
+      <mass value="0.20529"/>
+      <inertia ixx="5.3046E-05" ixy="-5.3192E-10" ixz="2.7197E-08"
+               iyy="7.586E-05" iyz="-4.1834E-08" izz="4.8136E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link5.STL"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link5.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 关节 5 -->
+  <joint name="joint5" type="revolute">
+    <origin xyz="0 0.035 0.3" rpy="1.5708 0 0"/>
+    <parent link="link4"/>
+    <child link="link5"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="${joint_limit_lower}" upper="${joint_limit_upper}" 
+           effort="${joint_effort}" velocity="${joint_velocity}"/>
+    <dynamics damping="0.7" friction="0.1"/>
+  </joint>
+
+  <!-- ============ 连杆 6 ============ -->
+  <link name="link6">
+    <inertial>
+      <origin xyz="3.3812E-05 -1.7318E-05 0.062854" rpy="0 0 0"/>
+      <mass value="0.20462"/>
+      <inertia ixx="4.0569E-05" ixy="1.0774E-06" ixz="-2.4934E-10"
+               iyy="6.6624E-05" iyz="1.4633E-10" izz="6.3699E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link6.STL"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot1_description/meshes/link6.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 关节 6 -->
+  <joint name="joint6" type="revolute">
+    <origin xyz="0 0.008 0.039" rpy="-1.5708 0 0"/>
+    <parent link="link5"/>
+    <child link="link6"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="${joint_limit_lower}" upper="${joint_limit_upper}" 
+           effort="${joint_effort}" velocity="${joint_velocity}"/>
+    <dynamics damping="0.7" friction="0.1"/>
+  </joint>
+
+  <!-- ============ 工具连杆 ============ -->
+  <link name="tool_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.01" length="0.05"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.01" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 工具关节 -->
+  <joint name="tool_joint" type="fixed">
+    <parent link="link6"/>
+    <child link="tool_link"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+  </joint>
+
+</robot>
